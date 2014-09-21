@@ -48,20 +48,20 @@ A. Define Cassandra KEYSPACE and COLUMN Family.
 B. Entity Bean definition
 
   a. Simple Type 
-    package com.corm.test.model;
-    import com.corm.annotations.Column;
-    import com.corm.Entity;
-    @Entity(columnFamily="testsimple", keyspace="orm")
-    public class TestSimpleTypes{
-    
-      @Column(name = "storeId")
-      private Long storeId;
-      @Column(name = "upcId")
-      private Long upcId;
-      @Column(name = "maxUpcId")
-      private Long maxUpcId;
-      // getters and setters not shown but implied available
-    }
+      package com.corm.test.model;
+      import com.corm.annotations.Column;
+      import com.corm.Entity;
+      @Entity(columnFamily="testsimple", keyspace="orm")
+      public class TestSimpleTypes{
+      
+        @Column(name = "storeId")
+        private Long storeId;
+        @Column(name = "upcId")
+        private Long upcId;
+        @Column(name = "maxUpcId")
+        private Long maxUpcId;
+        // getters and setters not shown but implied available
+      }
 
   b. Advanced Data types
 
