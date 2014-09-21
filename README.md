@@ -18,142 +18,142 @@ Detailed Usage overview :
 
 A. Define Cassandra KEYSPACE and COLUMN Family.
 
-CREATE KEYSPACE orm WITH replication = {
-  'class': 'SimpleStrategy',
-  'replication_factor': '1'
-};
+    CREATE KEYSPACE orm WITH replication = {
+      'class': 'SimpleStrategy',
+      'replication_factor': '1'
+    };
 
 // define column family
 
   a. Simple data type
 
-CREATE TABLE testsimple (
- storeId bigint,
- upcId bigint,
- maxUpcId bigint,
- PRIMARY KEY (storeId)
-);
+    CREATE TABLE testsimple (
+     storeId bigint,
+     upcId bigint,
+     maxUpcId bigint,
+     PRIMARY KEY (storeId)
+    );
 
   b. Advanced data type
 
-CREATE TABLE testmap (
- id int,
- description text,
- event_time timestamp,
- maps map<text, text>,
- tags set<text>,
- PRIMARY KEY (id)
-);
+    CREATE TABLE testmap (
+     id int,
+     description text,
+     event_time timestamp,
+     maps map<text, text>,
+     tags set<text>,
+     PRIMARY KEY (id)
+    );
 
 B. Entity Bean definition
 
   a. Simple Type 
-package com.corm.test.model;
-import com.corm.annotations.Column;
-import com.corm.Entity;
-@ntity(columnFamily="testsimple", keyspace="orm")
-public class TestSimpleTypes{
-
-@ORMColumn(name = "storeId")
-private Long storeId;
-@ORMColumn(name = "upcId")
-private Long upcId;
-@ORMColumn(name = "maxUpcId")
-private Long maxUpcId;
-// getters and setters not shown but implied available
-}
+    package com.corm.test.model;
+    import com.corm.annotations.Column;
+    import com.corm.Entity;
+    @ntity(columnFamily="testsimple", keyspace="orm")
+    public class TestSimpleTypes{
+    
+    @ORMColumn(name = "storeId")
+    private Long storeId;
+    @ORMColumn(name = "upcId")
+    private Long upcId;
+    @ORMColumn(name = "maxUpcId")
+    private Long maxUpcId;
+    // getters and setters not shown but implied available
+    }
 
   b. Advanced Data types
 
-package com.corm.test.model;
-
-import com.corm.annotations.Column;
-import com.corm.Entity;
-@ntity(columnFamily="testmap", keyspace="orm")
-public class TestAdvancedDataTypes{
-
-@ORMColumn(name = "id")
-Integer id;
-
-@ORMColumn(name = "description")
-String description ;
-
-@ORMColumn(name = "event_time")
-Date eventTime ;
-@ORMColumn(name = "TAGS")
-Set<String> tags ;
-@ORMColumn(name = "MAPS")
-Map<String,String> maps ;
-// getters and setters not shown but implied available
-}
+    package com.corm.test.model;
+    
+    import com.corm.annotations.Column;
+    import com.corm.Entity;
+    @ntity(columnFamily="testmap", keyspace="orm")
+    public class TestAdvancedDataTypes{
+    
+    @ORMColumn(name = "id")
+    Integer id;
+    
+    @ORMColumn(name = "description")
+    String description ;
+    
+    @ORMColumn(name = "event_time")
+    Date eventTime ;
+    @ORMColumn(name = "TAGS")
+    Set<String> tags ;
+    @ORMColumn(name = "MAPS")
+    Map<String,String> maps ;
+    // getters and setters not shown but implied available
+    }
 
 
 C. Integration with ORM
 
  This code has dependency on the datastax core java libraries.
 
-import com.corm.session.util.SessionUtil;
-import com.corm.session.ORMSession;
-// import dependencies for Entity bean 
-import com.corm.test.model.TestSimpleTypes;
-import com.corm.test.model.TestAdvancedDataTypes;
-
-public class ORMDriverTest{
-    private static String defaultKeySpace="orm";
-private static String scanPath = "com.cassandra.orm.test.*";
-private static String[] servers = new String[] {"localhost"};
-private static int portNumber=9042;
-public static void main(String args[]) throws Exception{
-    // initialize the session factory
-    SessionUtil.init(scanPath,servers,portNumber);
-processSimpleTypes(defaultKeySpace);
-    processAdvancedTypes(defaultKeySpace);
-   
-    // shutdown the session factory
-SessionUtil.shutdown();
-}
-static void processSimpleTypes(String keySpace) throws Exception{
-// acquire session
-ORMSession session = SessionUtil.session(keySpace,3200);
-
-List<TestSimpleTypes> list = new ArrayList<TestSimpleTypes>();
-
-for(long i=1;i <=1000000;i++){
-list.add(new TestSimpleTypes(i,i,i));
-}
-// persist the list using the ORMSession
-session.create (list);
-List<TestSimpleTypes> responses= session.retrieve(new TestSimpleTypes(),10) ; // limited to 10 for testing
-    // evaluate the responses.
-    ....
+    import com.corm.session.util.SessionUtil;
+    import com.corm.session.ORMSession;
+    // import dependencies for Entity bean 
+    import com.corm.test.model.TestSimpleTypes;
+    import com.corm.test.model.TestAdvancedDataTypes;
     
-session.close();
-}
-static void processAdvancedTypes(String keySpace) throws Exception{
-// acquire session
-ORMSession session = SessionUtil.session(keySpace,4000);
-Set<String> tags = new HashSet<String>();
-tags.add("Test1");
-tags.add("Test2");
-tags.add("Test3");
-tags.add("Test1");
-Map<String,String> map = new HashMap<String,String>();
-map.put("Test1", "Test1");
-map.put("Test2", "Test2");
-map.put("Test3", "Test5");
-List<TestAdvancedDataTypes> list = new ArrayList<TestAdvancedDataTypes>();
-for(int i=1;i <=1000000;i++){
-TestAdvancedDataTypes t= new TestAdvancedDataTypes();
-t.setId(i+15);
-t.setDescription("Test description "+i);
-t.setEventTime(new Date());
-t.setTags(tags);
-t.setMaps(map);
-list.add(t);
-}
-session.create (list);
-session.close();
-}
-}
+    public class ORMDriverTest{
+          private static String defaultKeySpace="orm";
+      private static String scanPath = "com.cassandra.orm.test.*";
+      private static String[] servers = new String[] {"localhost"};
+      private static int portNumber=9042;
+      public static void main(String args[]) throws Exception{
+          // initialize the session factory
+          SessionUtil.init(scanPath,servers,portNumber);
+      processSimpleTypes(defaultKeySpace);
+          processAdvancedTypes(defaultKeySpace);
+         
+          // shutdown the session factory
+      SessionUtil.shutdown();
+      }
+      static void processSimpleTypes(String keySpace) throws Exception{
+      // acquire session
+      ORMSession session = SessionUtil.session(keySpace,3200);
+      
+      List<TestSimpleTypes> list = new ArrayList<TestSimpleTypes>();
+      
+      for(long i=1;i <=1000000;i++){
+      list.add(new TestSimpleTypes(i,i,i));
+      }
+      // persist the list using the ORMSession
+      session.create (list);
+      List<TestSimpleTypes> responses= session.retrieve(new TestSimpleTypes(),10) ; // limited to 10 for testing
+          // evaluate the responses.
+          ....
+          
+      session.close();
+      }
+      static void processAdvancedTypes(String keySpace) throws Exception{
+      // acquire session
+      ORMSession session = SessionUtil.session(keySpace,4000);
+      Set<String> tags = new HashSet<String>();
+      tags.add("Test1");
+      tags.add("Test2");
+      tags.add("Test3");
+      tags.add("Test1");
+      Map<String,String> map = new HashMap<String,String>();
+      map.put("Test1", "Test1");
+      map.put("Test2", "Test2");
+      map.put("Test3", "Test5");
+      List<TestAdvancedDataTypes> list = new ArrayList<TestAdvancedDataTypes>();
+      for(int i=1;i <=1000000;i++){
+      TestAdvancedDataTypes t= new TestAdvancedDataTypes();
+      t.setId(i+15);
+      t.setDescription("Test description "+i);
+      t.setEventTime(new Date());
+      t.setTags(tags);
+      t.setMaps(map);
+      list.add(t);
+      }
+      session.create (list);
+      session.close();
+      }
+    }
 
 // source code and library will be uploaded soon
