@@ -54,11 +54,11 @@ B. Entity Bean definition
     @ntity(columnFamily="testsimple", keyspace="orm")
     public class TestSimpleTypes{
     
-    @ORMColumn(name = "storeId")
+    @Column(name = "storeId")
     private Long storeId;
-    @ORMColumn(name = "upcId")
+    @Column(name = "upcId")
     private Long upcId;
-    @ORMColumn(name = "maxUpcId")
+    @Column(name = "maxUpcId")
     private Long maxUpcId;
     // getters and setters not shown but implied available
     }
@@ -72,17 +72,17 @@ B. Entity Bean definition
     @ntity(columnFamily="testmap", keyspace="orm")
     public class TestAdvancedDataTypes{
     
-    @ORMColumn(name = "id")
+    @Column(name = "id")
     Integer id;
     
-    @ORMColumn(name = "description")
+    @Column(name = "description")
     String description ;
     
-    @ORMColumn(name = "event_time")
+    @Column(name = "event_time")
     Date eventTime ;
-    @ORMColumn(name = "TAGS")
+    @Column(name = "TAGS")
     Set<String> tags ;
-    @ORMColumn(name = "MAPS")
+    @Column(name = "MAPS")
     Map<String,String> maps ;
     // getters and setters not shown but implied available
     }
