@@ -100,7 +100,7 @@ C. Integration with ORM
     
     public class ORMDriverTest{
       private static String defaultKeySpace="orm";
-      private static String scanPath = "com.cassandra.orm.test.*";
+      private static String scanPath = "com.cassandra.orm.test.model.*";
       private static String[] servers = new String[] {"localhost"};
       private static int portNumber=9042;
       public static void main(String args[]) throws Exception{
