@@ -48,6 +48,7 @@ A. Define Cassandra KEYSPACE and COLUMN Family.
 B. Entity Bean definition
 
   a. Simple Type 
+  
       package com.corm.test.model;
       import com.corm.annotations.Column;
       import com.corm.Entity;
