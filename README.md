@@ -99,7 +99,7 @@ C. Integration with ORM
     import com.corm.test.model.TestAdvancedDataTypes;
     
     public class ORMDriverTest{
-          private static String defaultKeySpace="orm";
+      private static String defaultKeySpace="orm";
       private static String scanPath = "com.cassandra.orm.test.*";
       private static String[] servers = new String[] {"localhost"};
       private static int portNumber=9042;
@@ -110,7 +110,7 @@ C. Integration with ORM
           processAdvancedTypes(defaultKeySpace);
          
           // shutdown the session factory
-        SessionUtil.shutdown();
+          SessionUtil.shutdown();
       }
       static void processSimpleTypes(String keySpace) throws Exception{
       // acquire session
