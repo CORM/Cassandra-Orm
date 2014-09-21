@@ -51,16 +51,16 @@ B. Entity Bean definition
     package com.corm.test.model;
     import com.corm.annotations.Column;
     import com.corm.Entity;
-    @ntity(columnFamily="testsimple", keyspace="orm")
+    @Entity(columnFamily="testsimple", keyspace="orm")
     public class TestSimpleTypes{
     
-    @Column(name = "storeId")
-    private Long storeId;
-    @Column(name = "upcId")
-    private Long upcId;
-    @Column(name = "maxUpcId")
-    private Long maxUpcId;
-    // getters and setters not shown but implied available
+      @Column(name = "storeId")
+      private Long storeId;
+      @Column(name = "upcId")
+      private Long upcId;
+      @Column(name = "maxUpcId")
+      private Long maxUpcId;
+      // getters and setters not shown but implied available
     }
 
   b. Advanced Data types
@@ -69,21 +69,21 @@ B. Entity Bean definition
     
     import com.corm.annotations.Column;
     import com.corm.Entity;
-    @ntity(columnFamily="testmap", keyspace="orm")
+    @Entity(columnFamily="testmap", keyspace="orm")
     public class TestAdvancedDataTypes{
     
-    @Column(name = "id")
-    Integer id;
-    
-    @Column(name = "description")
-    String description ;
-    
-    @Column(name = "event_time")
-    Date eventTime ;
-    @Column(name = "TAGS")
-    Set<String> tags ;
-    @Column(name = "MAPS")
-    Map<String,String> maps ;
+      @Column(name = "id")
+      Integer id;
+      
+      @Column(name = "description")
+      String description ;
+      
+      @Column(name = "event_time")
+      Date eventTime ;
+      @Column(name = "TAGS")
+      Set<String> tags ;
+      @Column(name = "MAPS")
+      Map<String,String> maps ;
     // getters and setters not shown but implied available
     }
 
@@ -106,53 +106,53 @@ C. Integration with ORM
       public static void main(String args[]) throws Exception{
           // initialize the session factory
           SessionUtil.init(scanPath,servers,portNumber);
-      processSimpleTypes(defaultKeySpace);
+          processSimpleTypes(defaultKeySpace);
           processAdvancedTypes(defaultKeySpace);
          
           // shutdown the session factory
-      SessionUtil.shutdown();
+        SessionUtil.shutdown();
       }
       static void processSimpleTypes(String keySpace) throws Exception{
       // acquire session
-      ORMSession session = SessionUtil.session(keySpace,3200);
-      
-      List<TestSimpleTypes> list = new ArrayList<TestSimpleTypes>();
-      
-      for(long i=1;i <=1000000;i++){
-      list.add(new TestSimpleTypes(i,i,i));
-      }
-      // persist the list using the ORMSession
-      session.create (list);
-      List<TestSimpleTypes> responses= session.retrieve(new TestSimpleTypes(),10) ; // limited to 10 for testing
-          // evaluate the responses.
-          ....
-          
-      session.close();
+        ORMSession session = SessionUtil.session(keySpace,3200);
+        
+        List<TestSimpleTypes> list = new ArrayList<TestSimpleTypes>();
+        
+        for(long i=1;i <=1000000;i++){
+        list.add(new TestSimpleTypes(i,i,i));
+        }
+        // persist the list using the ORMSession
+        session.create (list);
+        List<TestSimpleTypes> responses= session.retrieve(new TestSimpleTypes(),10) ; // limited to 10 for testing
+            // evaluate the responses.
+            ....
+            
+        session.close();
       }
       static void processAdvancedTypes(String keySpace) throws Exception{
       // acquire session
-      ORMSession session = SessionUtil.session(keySpace,4000);
-      Set<String> tags = new HashSet<String>();
-      tags.add("Test1");
-      tags.add("Test2");
-      tags.add("Test3");
-      tags.add("Test1");
-      Map<String,String> map = new HashMap<String,String>();
-      map.put("Test1", "Test1");
-      map.put("Test2", "Test2");
-      map.put("Test3", "Test5");
-      List<TestAdvancedDataTypes> list = new ArrayList<TestAdvancedDataTypes>();
-      for(int i=1;i <=1000000;i++){
-      TestAdvancedDataTypes t= new TestAdvancedDataTypes();
-      t.setId(i+15);
-      t.setDescription("Test description "+i);
-      t.setEventTime(new Date());
-      t.setTags(tags);
-      t.setMaps(map);
-      list.add(t);
-      }
-      session.create (list);
-      session.close();
+        ORMSession session = SessionUtil.session(keySpace,4000);
+        Set<String> tags = new HashSet<String>();
+        tags.add("Test1");
+        tags.add("Test2");
+        tags.add("Test3");
+        tags.add("Test1");
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("Test1", "Test1");
+        map.put("Test2", "Test2");
+        map.put("Test3", "Test5");
+        List<TestAdvancedDataTypes> list = new ArrayList<TestAdvancedDataTypes>();
+        for(int i=1;i <=1000000;i++){
+        TestAdvancedDataTypes t= new TestAdvancedDataTypes();
+        t.setId(i+15);
+        t.setDescription("Test description "+i);
+        t.setEventTime(new Date());
+        t.setTags(tags);
+        t.setMaps(map);
+        list.add(t);
+        }
+        session.create (list);
+        session.close();
       }
     }
 
