@@ -119,7 +119,7 @@ C. Integration with ORM
         List<TestSimpleTypes> list = new ArrayList<TestSimpleTypes>();
         
         for(long i=1;i <=1000000;i++){
-        list.add(new TestSimpleTypes(i,i,i));
+          list.add(new TestSimpleTypes(i,i,i));
         }
         // persist the list using the ORMSession
         session.create (list);
@@ -143,13 +143,13 @@ C. Integration with ORM
         map.put("Test3", "Test5");
         List<TestAdvancedDataTypes> list = new ArrayList<TestAdvancedDataTypes>();
         for(int i=1;i <=1000000;i++){
-        TestAdvancedDataTypes t= new TestAdvancedDataTypes();
-        t.setId(i+15);
-        t.setDescription("Test description "+i);
-        t.setEventTime(new Date());
-        t.setTags(tags);
-        t.setMaps(map);
-        list.add(t);
+          TestAdvancedDataTypes t= new TestAdvancedDataTypes();
+          t.setId(i+15);
+          t.setDescription("Test description "+i);
+          t.setEventTime(new Date());
+          t.setTags(tags);
+          t.setMaps(map);
+          list.add(t);
         }
         session.create (list);
         session.close();
