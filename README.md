@@ -151,6 +151,26 @@ This ORM framework offers 2 overloaded methods to achieve either insert of singl
     
 The SessionConsistencyLevel is an enum type which has similar representation as Cassandra Consistency level enum definition.
 
+Closing ORM Session
+==================
+
+The ORM session can be closed using the close operation.
+
+    ORMSession session = SessionUtil.session(keySpace,batchCommitFactor);
+    // use the session
+  
+    //Dispose off the session
+    session.close();
+  
+  Closing a session will not shutdown the connection to cluster.
+  
+Shutdown Cluster
+===============
+
+A cleaner approach is to shutdown the connection to cluster when the main application terminates. Following achieves the shutdown operation.
+
+    SessionUtil.shutdown();
+
 
 Sample Code in action
 ====================
