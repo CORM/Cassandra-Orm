@@ -115,15 +115,15 @@ Detailed Usage overview
   import com.corm.test.model.Test2;
   
   public class ORMTypesDriverTest {
-  
-      private static String defaultKeySpace="orm";
-      private static String scanPath = "com.corm.test.model.*";
+    private static String defaultKeySpace="orm";
+    private static String scanPath = "com.corm.test.model.*";
+  	
   	public static void main(String args[]) throws Exception{
   		Bootstrapper.init(scanPath);
+  		
   		processSimple(defaultKeySpace);
-  //		processAdvancedTypes(defaultKeySpace);
-  		// test byte buffer data type - this needs changes to filename in the BlobFetcher class
-  //		processBlob("orm");
+      processAdvancedTypes(defaultKeySpace);
+
   		SessionUtil.shutdown();
   	}
   	
@@ -181,7 +181,6 @@ Detailed Usage overview
   		profiler.report(list.size());
   		session.close();
   	}	
-
   }
 
 // source code and library will be uploaded soon
