@@ -120,9 +120,9 @@ Detailed Usage overview
     	public static void main(String args[]) throws Exception{
     		Bootstrapper.init(scanPath);
     		
-        processSimple(defaultKeySpace);
+          processSimple(defaultKeySpace);
         
-        processAdvancedTypes(defaultKeySpace);
+          processAdvancedTypes(defaultKeySpace);
   
     		SessionUtil.shutdown();
     	}
@@ -183,4 +183,18 @@ Detailed Usage overview
     	}	
     }
 
-// source code and library will be uploaded soon
+Bootstrapper.java - just a wrapper for bootstrapping the connect to Cassandra cluster.
+
+  package com.corm.test.app;
+  
+  import com.corm.session.util.SessionUtil;
+  
+  public class Bootstrapper {
+  	private static String[] servers = new String[] {"localhost"};
+  	private static int portNumber=9042;
+  	
+  	public static void init(String scanPath){
+  		SessionUtil.init(scanPath, servers, portNumber);
+  	}
+  }
+
