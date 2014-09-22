@@ -119,7 +119,7 @@ The ORM framework offer SessionUtil which simplifies connect to Cassandra cluste
 Retrieving Data
 ===============
 
-This ORM framework 2 overloaded methods fpr retrieval of data. The retrieve interface is described below.
+This ORM framework offers 2 overloaded methods for retrieval of data. The retrieve interface is described below.
 
     public <T> List<T> retrieve(T obj,int limit);
   
