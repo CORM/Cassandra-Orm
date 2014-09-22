@@ -29,15 +29,15 @@ Detailed Usage overview
     a. Simple data type
 
     CREATE TABLE testsimple (
-     storeId bigint,
-     upcId bigint,
-     maxUpcId bigint,
-     PRIMARY KEY (storeId)
+      id int,
+      description TEXT,
+      event_time timestamp,
+      PRIMARY KEY (id)
     );
 
     b. Advanced data type
 
-    CREATE TABLE testmap (
+    CREATE TABLE testadvanced (
      id int,
      description text,
      event_time timestamp,
@@ -71,7 +71,7 @@ Detailed Usage overview
     
     import com.corm.annotations.Column;
     import com.corm.Entity;
-    @Entity(columnFamily="testmap", keyspace="orm")
+    @Entity(columnFamily="testadvanced", keyspace="orm")
     public class TestAdvancedDataTypes{
     
       @Column(name = "id")
@@ -92,7 +92,7 @@ Detailed Usage overview
 
   C. Integration with ORM
 
- This code has dependency on the datastax core java libraries.
+ Please Note: This code has dependency on the datastax core java libraries.
 
     package com.corm.test.app;
     
@@ -109,8 +109,8 @@ Detailed Usage overview
     import com.flights.app.DataAcquirer;
     import com.corm.session.util.SessionUtil;
     import com.corm.test.app.utils.Profiler;
-    import com.corm.test.model.Test;
-    import com.corm.test.model.Test1;
+    import com.corm.test.model.TestSimpleTypes;
+    import com.corm.test.model.TestAdvancedDataTypes;
   
     public class ORMTypesDriverTest {
         private static String defaultKeySpace="orm";
@@ -131,10 +131,10 @@ Detailed Usage overview
     		ORMSession session = SessionUtil.session(keySpace,3500);	
     
     
-    		List<Test> list = new ArrayList<Test>();
+    		List<TestSimpleTypes> list = new ArrayList<TestSimpleTypes>();
     
     		for(int i=1;i <=1000000;i++){
-    			Test t= new Test();
+    			TestSimpleTypes t= new TestSimpleTypes();
     			t.setId(i);
     			t.setDescription("Test description " + i);
     			t.setEventTime(new Date());
@@ -162,10 +162,10 @@ Detailed Usage overview
     		map.put("Test1", "Test1");
     		map.put("Test2", "Test2");
     		map.put("Test3", "Test5");
-    		List<Test1> list = new ArrayList<Test1>();
+    		List<TestAdvancedDataTypes> list = new ArrayList<TestAdvancedDataTypes>();
     
     		for(int i=1;i <=1000000;i++){
-    			Test1 t= new Test1();
+    			TestAdvancedDataTypes t= new TestAdvancedDataTypes();
     			t.setId(i+15);
     			t.setDescription("Test description");
     			t.setEventTime(new Date());
