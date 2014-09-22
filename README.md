@@ -125,7 +125,7 @@ This ORM framework 2 overloaded methods fpr retrieval of data. The retrieve inte
   
   public <T> List<T> retrieve(T obj, ORMCriteria criteria);
   
-  ORMCriteria and details on how to use for building Criteria's for queries will be discussed later.
+ORMCriteria and details on how to use for building Criteria's for queries will be discussed later.
   
 Inserting Data
 ==============
@@ -134,7 +134,7 @@ This ORM framework offers 2 overloaded methods to achieve either insert of singl
 
   public void create ( Object object,SessionConsistencyLevel scLevel);
   
-  public <T> void create ( List<T> object,SessionConsistencyLevel scLevel);
+  public <T> void create ( List<T> objects,SessionConsistencyLevel scLevel);
 
 
 Sample Code in action
