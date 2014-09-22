@@ -111,7 +111,6 @@ Detailed Usage overview
     import com.corm.test.app.utils.Profiler;
     import com.corm.test.model.Test;
     import com.corm.test.model.Test1;
-    import com.corm.test.model.Test2;
   
     public class ORMTypesDriverTest {
       private static String defaultKeySpace="orm";
