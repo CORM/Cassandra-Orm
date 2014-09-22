@@ -121,11 +121,12 @@ Acquiring ORM Session
 
 ORM Session is retrieved using the SessionUtil. The SessionUtil delegates request to SessionFactory and acquires a ORMSession instance.
 
-      String keySpace = "myspace";
-      int batchCommitFactor = 3500;
-    	ORMSession session = SessionUtil.session(keySpace,batchCommitFactor);
+    String keySpace = "myspace";
+    int batchCommitFactor = 3500;
+    
+    ORMSession session = SessionUtil.session(keySpace,batchCommitFactor);
     		
-    		Where batchCommitFactor is optional and defaults to 500 in case not provided, this paramter is signifigant for INSERT queries. You can vary this factor and can see the performance improvements for insert operations. Please keep in mind, huge commit factor can also slow the performance and will have greater influence with wider column family.
+  Where batchCommitFactor is optional and defaults to 500 in case not provided, this paramter is signifigant for INSERT queries. You can vary this factor and can see the performance improvements for insert operations. Please keep in mind, huge commit factor can also slow the performance and will have greater influence with wider column family.
 
 
 Retrieving Data
