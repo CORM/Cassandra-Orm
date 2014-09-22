@@ -113,8 +113,8 @@ Detailed Usage overview
     import com.corm.test.model.Test1;
   
     public class ORMTypesDriverTest {
-      private static String defaultKeySpace="orm";
-      private static String scanPath = "com.corm.test.model.*";
+        private static String defaultKeySpace="orm";
+        private static String scanPath = "com.corm.test.model.*";
     	
     	public static void main(String args[]) throws Exception{
     		Bootstrapper.init(scanPath);
