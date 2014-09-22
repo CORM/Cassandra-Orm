@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.example.org/SAP-ORM-CONFIGURATION" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.org/SAP-ORM-CONFIGURATION">
+    <element name="orm-configuration">
+	    <complexType>
+	    	<sequence>
+    		<element name="session-factory"
+    			type="tns:session-factory" maxOccurs="1" minOccurs="1">
+    		</element>
+    		</sequence>
+	    </complexType>
+    </element>
+    
+    <complexType name="session-factory">
+    	<sequence>
+    		<element name="property" type="tns:property" minOccurs="1" maxOccurs="unbounded"></element>
+			<element name="mapping" type="tns:mapping" minOccurs="1" maxOccurs="unbounded"></element>
+			<element name="strategy" type="tns:strategy" minOccurs="1" maxOccurs="unbounded"></element>
+    	</sequence>  
+    	<attribute name="scan-path" type="string" use="required"></attribute>
+    </complexType>
+
+
+    <complexType name="property">
+    	<attribute name="name" type="string" use="required"></attribute> 
+    	<attribute name="value" type="string" use="required"></attribute>
+    </complexType>
+    <complexType name="mapping">
+    	<attribute name="resource" type="string" use="required"></attribute> 
+    </complexType>
+    
+    <complexType name="strategy">
+    	<sequence>
+    		<element name="action" type="tns:action" minOccurs="1" maxOccurs="1"></element>
+    	</sequence>  
+    	<attribute name="mode" type="string" use="required"></attribute>
+    	<attribute name="attributeType" type="string" use="required"></attribute> 
+    </complexType>
+ 
+	<complexType name="action">
+	    	<sequence>
+    		<element name="value"
+    			type="string" maxOccurs="1" minOccurs="1">
+    		</element>
+    		</sequence>
+	 </complexType>
+</schema>

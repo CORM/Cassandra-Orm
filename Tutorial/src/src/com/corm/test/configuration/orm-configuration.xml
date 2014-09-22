@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<orm-configuration xmlns="http://www.example.org/DSTAX-ORM-CONFIGURATION" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.example.org/DSTAX-ORM-CONFIGURATION orm-configuration.xsd ">
+	<session-factory scan-path="com.flights.app.model.*">
+	</session-factory>
+</orm-configuration>

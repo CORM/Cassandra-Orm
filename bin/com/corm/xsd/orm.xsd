@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.example.org/SAP-ORM" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.org/SAP-ORM">
+    <element name="orm-mapping">
+	    <complexType>
+	    	<sequence>
+    		<element name="class"
+    			type="tns:class" maxOccurs="1" minOccurs="0">
+    		</element>
+    		</sequence>
+	    </complexType>
+    </element>
+    
+    <complexType name="class">
+    	<sequence>
+    		<element name="id" type="tns:id" minOccurs="0" maxOccurs="1"></element>
+    		<element name="column" type="tns:column" minOccurs="0" maxOccurs="unbounded"></element>
+			<element name="one-to-one" type="tns:one-to-one" minOccurs="0" maxOccurs="unbounded"></element>
+			<element name="one-to-many" type="tns:one-to-many" minOccurs="0" maxOccurs="unbounded"></element>
+			<element name="aggregate" type="tns:aggregate" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    		<attribute name="name" type="string" use="required" ></attribute>
+	     	<attribute name="catalog" type="string" use="required"></attribute> 
+	     	<attribute name="table" type="string" use="required"></attribute>
+	     	<attribute name="uniqueConstraints" type="string" use="optional" default=""></attribute>
+    </complexType>
+
+    <complexType name="id">
+    	<attribute name="type" type="string" use="optional" default=""></attribute>
+    	<attribute name="field" type="string" use="optional" default=""></attribute>
+    	<attribute name="name" type="string" use="required"></attribute> 
+		<attribute name="inject" type="boolean" use="optional" default="false"></attribute>
+		<attribute name="hint" type="string" use="optional" default=""></attribute> 
+		<attribute name="strategy" type="string" use="optional" default="hint"></attribute> 
+    	<attribute name="ignoreFor" type="string" use="optional" default="save"></attribute>
+    </complexType>
+    <complexType name="column">
+    	<attribute name="rawType" type="string" use="required"></attribute>
+    	<attribute name="field" type="string" use="optional" default=""></attribute>
+    	<attribute name="name" type="string" use="optional" default=""></attribute> 
+    	<attribute name="length" type="int" use="optional" default ="-1"></attribute> 
+    	<attribute name="nullable" type="boolean" use="optional" default="false"></attribute> 
+    	<attribute name="unique" type="boolean" use="optional" default="false"></attribute> 
+    	<attribute name="ignoreFor" type="string" use="optional" default=""></attribute>
+		<attribute name="inject" type="boolean" use="optional" default="false"></attribute>
+		<attribute name="hint" type="string" use="optional" default=""></attribute> 
+    </complexType>
+
+    
+    <complexType name="one-to-one">
+     	<attribute name="class" type="string" use="required"></attribute>
+    	<attribute name="field" type="string" use="optional" default=""></attribute>
+   		<attribute name="name" type="string" use="optional" default=""></attribute> 
+     	<attribute name="constrained" type="string" use="required"></attribute>
+     	<attribute name="cascade" type="string" use="required"></attribute>
+     	<attribute name="foreignRef" type="string" use="required"></attribute>
+		<attribute name="localRef" type="string" use="required"></attribute>
+		<attribute name="refEntity" type="string" use="optional" default=""></attribute>
+		<attribute name="join" type="string" use="optional" default="LEFT OUTER JOIN"></attribute>
+    	<attribute name="type" type="string" use="optional" default=""></attribute>
+    </complexType>
+    <complexType name="one-to-many">   	
+     	<attribute name="class" type="string" use="required"></attribute>
+    	<attribute name="field" type="string" use="optional" default=""></attribute>
+   		<attribute name="name" type="string" use="optional" default=""></attribute> 
+     	<attribute name="constrained" type="string" use="required"></attribute>
+     	<attribute name="cascade" type="string" use="required"></attribute>
+     	<attribute name="foreignRef" type="string" use="required"></attribute>
+		<attribute name="localRef" type="string" use="required"></attribute>
+		<attribute name="refEntity" type="string" use="optional" default=""></attribute>
+		<attribute name="join" type="string" use="optional" default="LEFT OUTER JOIN"></attribute>
+    	<attribute name="type" type="string" use="optional" default=""></attribute>
+    </complexType>
+    <complexType name="aggregate">   	
+     	<attribute name="class" type="string" use="required"></attribute>
+    	<attribute name="field" type="string" use="optional" default=""></attribute>
+   		<attribute name="name" type="string" use="optional" default=""></attribute> 
+     	<attribute name="constrained" type="string" use="required"></attribute>
+     	<attribute name="cascade" type="string" use="required"></attribute>
+     	<attribute name="foreignRef" type="string" use="required"></attribute>
+		<attribute name="localRef" type="string" use="required"></attribute>
+		<attribute name="refEntity" type="string" use="optional" default=""></attribute>
+		<attribute name="join" type="string" use="optional" default="LEFT OUTER JOIN"></attribute>
+    	<attribute name="type" type="string" use="optional" default=""></attribute>
+     	<attribute name="function" type="string" use="optional" default="SUM"></attribute>   	
+    </complexType>    
+</schema>

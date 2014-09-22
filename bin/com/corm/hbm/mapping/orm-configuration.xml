@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<orm-configuration xmlns="http://www.example.org/CASSANDRA-ORM-CONFIGURATION" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/CASSANDRA-ORM-CONFIGURATION orm-configuration.xsd ">
+	<session-factory scan-path="com.foo.model.*,com.foo1.generator.goals.*, com.foo3.util.*">
+	 	<property name="orm.connection.driver_class" value="" />
+		<property name="orm.connection.url" value="jdbc:sap://LLBPAL03.pal.sap.corp:30015"/>
+		<property name="orm.connection.username" value="RDSUSER"/>
+		<property name="orm.connection.password" value="Welcome2"/>
+		<property name="show_sql" value="true"/>
+		<strategy attributeType="java.sql.Timestamp" mode="db">
+      		<action>
+        		<value>SELECT ${hint} FROM DUMMY</value>
+      		</action>
+    	</strategy>
+		<strategy attributeType="java.lang.Integer" mode="db">
+      		<action>
+        		<value>SELECT ${hint} FROM DUMMY</value>
+      		</action>
+    	</strategy>
+	</session-factory>
+</orm-configuration>

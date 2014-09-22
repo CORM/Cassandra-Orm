@@ -1,0 +1,9 @@
+com.corm.annotations
+com.corm.configuration.generated
+com.corm.db
+com.corm.loader
+com.corm.mapping.generated
+com.corm.scanner
+com.corm.session
+com.corm.session.util
+com.corm.wrappers
