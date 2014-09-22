@@ -89,8 +89,55 @@ Detailed Usage overview
     // getters and setters not shown but implied available
     }
 
+Connecting to Cassandra Cluster
+===============================
 
-  C. Integration with ORM
+The ORM framework offer SessionUtil which simplifies connect to Cassandra cluster as well as exposes interfaces to acquire ORMSession. Sample initialization code is shown below.
+
+  a. Server and port Configuration initialization
+    	static String[] servers = new String[] {"localhost"};
+    	static int portNumber=9042;
+    	static String scanPath="com.corm.test.model.*";
+    	
+  b. Connecting to Cassandra when no user/password credential is used.
+
+      SessionUtil.init(scanPath, servers, portNumber);
+
+  c. Connecting to Cassandra using credentials
+      
+      SessionUtil.setAuthProvider("myuser","mysecret");
+      
+      SessionUtil.init(scanPath, servers, portNumber);
+      
+  d. Connecting to Cassandra using AuthProvider - this can be any Datastax supported AuthProvider
+      
+      SessionUtil.setAuthProvider(authProvider);
+      
+      SessionUtil.init(scanPath, servers, portNumber);
+
+Retrieving Data
+===============
+
+This ORM framework allows retrieval of data using the retrieve ORMSession method. The retrieve interface is described below
+
+  public <T> List<T> retrieve(T obj,int limit);
+  
+  public <T> List<T> retrieve(T obj, ORMCriteria criteria);
+  
+  ORMCriteria and details on how to use for building Criteria's for queries will be discussed later.
+  
+Inserting Data
+==============
+
+This ORM framework offers 2 overloaded methods to achieve either insert of single entity or a collection of idential entity objects.
+
+  public void create ( Object object,SessionConsistencyLevel scLevel);
+  
+  public <T> void create ( List<T> object,SessionConsistencyLevel scLevel);
+
+
+Sample Code in action
+====================
 
  Please Note: This code has dependency on the datastax core java libraries.
 
