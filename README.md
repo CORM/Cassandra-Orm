@@ -14,7 +14,8 @@ Sneak Preview of ORM driver usage:
 
 Please note: This ORM driver forwards the request to DataStax core java driver for performing interaction with CASSANDRA, and hence all the dependencies of DataStax java drivers must be satisified in the containing project. To use this ORM driver, knowledge and understanding of DataStax core java driver is not a requirement and this ORM driver defines a high level interface which obscures the necessity of knowing the DataStax core java driver. In short, from application interface view point, it is just recessary to understand the ORMSession interface. Bootstrapping requirements are abstracted within SessionUtil offered as part of ORM driver framework and at a bare minimum bootstrap just requires server list, port and the scan path for the entity beans. Entity beans can be defined in multiple packages and provided as comma separated string when defining scanPath.
 
-Detailed Usage overview : 
+Detailed Usage overview
+=======================
 
 A. Define Cassandra KEYSPACE and COLUMN Family.
 
