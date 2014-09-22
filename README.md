@@ -140,7 +140,7 @@ This ORM framework offers 2 overloaded methods to achieve either insert of singl
 Sample Code in action
 ====================
 
- Please Note: This code has dependency on the datastax core java libraries.
+ Please Note: This code which uses the CORM framework has dependency on the datastax core java libraries due to inherent datastax core libraries refernce in the CORM framework.
 
     package com.corm.test.app;
     
