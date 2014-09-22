@@ -17,7 +17,8 @@ Please note: This ORM driver forwards the request to DataStax core java driver f
 Detailed Usage overview
 =======================
 
-A. Define Cassandra KEYSPACE and COLUMN Family.
+  A. Define Cassandra KEYSPACE and COLUMN Family
+  ==============================================
 
     CREATE KEYSPACE orm WITH replication = {
       'class': 'SimpleStrategy',
