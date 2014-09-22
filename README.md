@@ -15,18 +15,18 @@ Sneak Preview of ORM driver usage:
 Please note: This ORM driver forwards the request to DataStax core java driver for performing interaction with CASSANDRA, and hence all the dependencies of DataStax java drivers must be satisified in the containing project. To use this ORM driver, knowledge and understanding of DataStax core java driver is not a requirement and this ORM driver defines a high level interface which obscures the necessity of knowing the DataStax core java driver. In short, from application interface view point, it is just recessary to understand the ORMSession interface. Bootstrapping requirements are abstracted within SessionUtil offered as part of ORM driver framework and at a bare minimum bootstrap just requires server list, port and the scan path for the entity beans. Entity beans can be defined in multiple packages and provided as comma separated string when defining scanPath.
 
 Detailed Usage overview
-===================
+=======================
 
-  A. Define Cassandra KEYSPACE and COLUMN Family.
+  A. Define Cassandra KEYSPACE
 
     CREATE KEYSPACE orm WITH replication = {
       'class': 'SimpleStrategy',
       'replication_factor': '1'
     };
+  
+  B. Define Column Family
 
-// define column family
-
-  a. Simple data type
+    a. Simple data type
 
     CREATE TABLE testsimple (
      storeId bigint,
@@ -35,7 +35,7 @@ Detailed Usage overview
      PRIMARY KEY (storeId)
     );
 
-  b. Advanced data type
+    b. Advanced data type
 
     CREATE TABLE testmap (
      id int,
@@ -46,9 +46,9 @@ Detailed Usage overview
      PRIMARY KEY (id)
     );
 
-B. Entity Bean definition
+  C. Entity Bean definition
 
-  a. Simple Type 
+    a. Simple Type 
   
       package com.corm.test.model;
       import com.corm.annotations.Column;
@@ -65,7 +65,7 @@ B. Entity Bean definition
         // getters and setters not shown but implied available
       }
 
-  b. Advanced Data types
+    b. Advanced Data types
 
     package com.corm.test.model;
     
@@ -90,7 +90,7 @@ B. Entity Bean definition
     }
 
 
-C. Integration with ORM
+  C. Integration with ORM
 
  This code has dependency on the datastax core java libraries.
 
