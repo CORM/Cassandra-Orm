@@ -120,9 +120,9 @@ Detailed Usage overview
     	public static void main(String args[]) throws Exception{
     		Bootstrapper.init(scanPath);
     		
-          processSimple(defaultKeySpace);
+            processSimple(defaultKeySpace);
         
-          processAdvancedTypes(defaultKeySpace);
+            processAdvancedTypes(defaultKeySpace);
   
     		SessionUtil.shutdown();
     	}
