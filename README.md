@@ -95,9 +95,10 @@ Connecting to Cassandra Cluster
 The ORM framework offer SessionUtil which simplifies connect to Cassandra cluster as well as exposes interfaces to acquire ORMSession. Sample initialization code is shown below.
 
   a. Server and port Configuration initialization
-    	static String[] servers = new String[] {"localhost"};
-    	static int portNumber=9042;
-    	static String scanPath="com.corm.test.model.*";
+    	
+      static String[] servers = new String[] {"localhost"};
+      static int portNumber=9042;
+      static String scanPath="com.corm.test.model.*";
     	
   b. Connecting to Cassandra when no user/password credential is used.
 
@@ -118,7 +119,7 @@ The ORM framework offer SessionUtil which simplifies connect to Cassandra cluste
 Retrieving Data
 ===============
 
-This ORM framework allows retrieval of data using the retrieve ORMSession method. The retrieve interface is described below
+This ORM framework 2 overloaded methods fpr retrieval of data. The retrieve interface is described below.
 
   public <T> List<T> retrieve(T obj,int limit);
   
