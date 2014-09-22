@@ -130,7 +130,6 @@ Detailed Usage overview
     		// acquire session
     		ORMSession session = SessionUtil.session(keySpace,3500);	
     
-    
     		List<TestSimpleTypes> list = new ArrayList<TestSimpleTypes>();
     
     		for(int i=1;i <=1000000;i++){
