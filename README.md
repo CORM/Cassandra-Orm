@@ -135,6 +135,8 @@ This ORM framework offers 2 overloaded methods to achieve either insert of singl
     public <T> void create ( T object,SessionConsistencyLevel scLevel);
     
     public <T> void create ( List<T> objects,SessionConsistencyLevel scLevel);
+    
+The SessionConsistencyLevel is an enum type which has similar representation as Cassandra Consistency level enum definition.
 
 
 Sample Code in action
