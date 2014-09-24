@@ -7,7 +7,7 @@ This driver addresses the main plumbing concerns associated with application int
 
 Sneak Preview of ORM driver usage:
 
-  1. Annotate Entity Bean - Example keyspace, table and field annotations
+  1. Annotate Entity Bean - Example keyspace, columnFamily and field annotations
   2. Initialize SessionFactory
   3. Acquire Session and perform create ( either with a list of orm enitites or single object), or retrieve orm entites just   specifiying ORM entity object and also optionally pass in criteria's for retrieval
   4. Dispose session and shutdown sessionfactory
