@@ -124,7 +124,7 @@ public class ORMCriteriaBuilder {
 		String entity = criteria.entity();
 
 		com.corm.mapping.generated.Class clazz= ORMResourceRegistry.getClass(entity);
-		String catalog = clazz.getKeyspace();
+//		String catalog = clazz.getKeyspace();
 		String table = clazz.getColumnFamily();
 		String name = clazz.getName();
 		
@@ -134,10 +134,13 @@ public class ORMCriteriaBuilder {
 		}
 
 // prepare the main selection list		
+		for(com.corm.mapping.generated.Column column:clazz.getColumn()){
+			builder.append(column.getName()+",");
+		}
 		builder.trimToSize();
 		String sql=builder.substring(0,builder.length()-1) ;
 		
-		sql += " FROM " +"\""+catalog +"\""+"."+"\""+ table+"\" ";// + name + " " ;
+		sql += " FROM " +table;// + name + " " ;
 		builder = new StringBuilder();
 
 		sql +=  builder.toString().trim()  + " "; 

@@ -17,7 +17,7 @@ CREATE TABLE test (
 );
 
  */
-@Entity(columnFamily="testblob", keyspace="orm")
+@Entity(columnFamily="testblob")
 public class Test2 {
 
 	public Integer getId() {

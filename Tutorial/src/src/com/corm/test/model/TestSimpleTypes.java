@@ -13,7 +13,7 @@ CREATE TABLE testsimple (
 );
 
  */
-@Entity(columnFamily="testsimple", keyspace="orm")
+@Entity(columnFamily="testsimple")
 public class TestSimpleTypes {
 
 	public TestSimpleTypes() {

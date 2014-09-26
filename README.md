@@ -53,7 +53,7 @@ Detailed Usage overview
       package com.corm.test.model;
       import com.corm.annotations.Column;
       import com.corm.Entity;
-      @Entity(columnFamily="testsimple", keyspace="orm")
+      @Entity(columnFamily="testsimple")
       public class TestSimpleTypes{
       
         @Column(name = "storeId")
@@ -71,7 +71,7 @@ Detailed Usage overview
     
     import com.corm.annotations.Column;
     import com.corm.Entity;
-    @Entity(columnFamily="testadvanced", keyspace="orm")
+    @Entity(columnFamily="testadvanced")
     public class TestAdvancedDataTypes{
     
       @Column(name = "id")

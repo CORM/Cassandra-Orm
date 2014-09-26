@@ -18,7 +18,7 @@ CREATE TABLE testadvanced (
 );
 
  */
-@Entity(columnFamily="testadvanced", keyspace="orm")
+@Entity(columnFamily="testadvanced")
 public class TestAdvancedDataTypes {
 
 	public TestAdvancedDataTypes() {

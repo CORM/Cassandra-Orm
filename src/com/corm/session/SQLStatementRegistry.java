@@ -66,10 +66,10 @@ public class SQLStatementRegistry {
 	
 	private static ORMSQLContext buildCreateColumnList(Object obj, com.corm.mapping.generated.Class clazz,String action,String ignoreFor){
 		
-		String catalog = clazz.getKeyspace();
+//		String catalog = clazz.getKeyspace();
 		String table = clazz.getColumnFamily();
 		StringBuilder builder = new StringBuilder();
-		builder.append(action).append(" "+"\""+catalog +"\""+"."+"\""+ table+"\"" + " (" );
+		builder.append(action+" ").append( table + " (" );
 		Set<String> columns = ORMPropertyListBuilder.build(obj, clazz.getName(),ignoreFor);
 		Set<com.corm.mapping.generated.Column> refined = new LinkedHashSet<com.corm.mapping.generated.Column>();
 
@@ -103,10 +103,10 @@ public class SQLStatementRegistry {
 
 	private static ORMSQLContext buildDeleteColumnList(Object obj, com.corm.mapping.generated.Class clazz){
 		
-		String catalog = clazz.getKeyspace();
+//		String catalog = clazz.getKeyspace();
 		String table = clazz.getColumnFamily();
 		StringBuilder builder = new StringBuilder();
-		builder.append("DELETE FROM "+"\""+catalog +"\""+"."+"\""+ table+"\"" + " where " );
+		builder.append("DELETE FROM " + table+" where " );
 
 		Set<com.corm.mapping.generated.Column> properties = ORMPropertyListBuilder.buildDelete(obj, clazz.getName());
 
@@ -127,7 +127,7 @@ public class SQLStatementRegistry {
 		
 	}	
 	private static String buildSelectColumnList(com.corm.mapping.generated.Class clazz){
-		String catalog = clazz.getKeyspace();
+//		String catalog = clazz.getKeyspace();
 		String table = clazz.getColumnFamily();
 		StringBuilder builder = new StringBuilder();
 		builder.append("SELECT ");
@@ -138,7 +138,7 @@ public class SQLStatementRegistry {
 			builder.append(column+',');			
 		}
 		builder.trimToSize();		
-		String ret =   builder.substring(0,builder.length()-1) + " FROM "+"\""+catalog +"\""+"."+"\""+ table+"\" ";
+		String ret =   builder.substring(0,builder.length()-1) + " FROM "+ table+" ";
 		builder.setLength(0);
 		builder = null;
 		return ret;
